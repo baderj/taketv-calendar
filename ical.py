@@ -1,4 +1,4 @@
-from bs4 import BeautifulSoup
+from BeautifulSoup import BeautifulSoup
 import requests
 import re
 from icalendar import Calendar, Event
@@ -7,9 +7,10 @@ import pytz
 
 def get_stream_events():
     events = []
-    doc = BeautifulSoup(requests.get('http://www.taketv.net/streams').text)    
+    html = requests.get('http://www.taketv.net/streams').text    
+    doc = BeautifulSoup(html)   
     entries = []    
-    for h2 in doc.find_all('h2'):
+    for h2 in doc.findAll('h2'):
         who = h2.getText().encode('utf-8')        
         date = h2.findPrevious('span', {'class':'datum'}).getText()
         time = h2.findPrevious('span', {'class':'time'}).getText()
