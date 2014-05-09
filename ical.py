@@ -43,11 +43,11 @@ def create_calendar(events):
         cal.add_component(event)
     return cal
 
-def write_to_file(path, events):
+def write_to_file(path, cal):
     with open(path, 'wb') as f:
-        f.write(ical.to_ical())
+        f.write(cal.to_ical())
         
 if __name__ == "__main__":
     events = get_stream_events()
-    ical = create_calendar(events)
-    write_to_file('taketv.ics', events)
+    cal = create_calendar(events)
+    write_to_file('taketv.ics', cal)
